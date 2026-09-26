@@ -1,0 +1,7 @@
+requests
+pandas
+pyarrow
+pymupdf
+duckdb
+pytest
+ipykernel

@@ -2,9 +2,9 @@ import json
 import os
 import csv
 import pandas as pd
-from chunking import gerar_chunks
-from clean import clean_text
-from extract import extract_text
+from src.parsing.chunking import gerar_chunks
+from src.parsing.clean import clean_text
+from src.parsing.extract import extract_text
 
 
 #Pega cada arquivo da pasta e separa em documentos

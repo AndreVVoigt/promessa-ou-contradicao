@@ -21,7 +21,7 @@ from pathlib import Path
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
-from manifest import load_valid_candidates_metadata, write_manifest
+from src.acquisition.manifest import load_valid_candidates_metadata, write_manifest
 
 # --------------------------------------------------------------------------
 # Configuração
