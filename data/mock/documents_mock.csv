@@ -1,0 +1,4 @@
+document_id,candidate,party,office,state,source_url,original_filename,filename,download_timestamp,dataset_version,status
+PRES_001,Ana Ribeiro Matos,PDA,PRESIDENTE,BR,https://divulgacandcontas.tse.jus.br/planos/2026/PRES/ana-ribeiro-matos.pdf,2026BR280002500143_01.pdf,PRES_001.pdf,2026-09-10T13:04:22Z,bronze_v0,ok
+PRES_002,Joaquim Torres Lemos,MRB,PRESIDENTE,BR,https://divulgacandcontas.tse.jus.br/planos/2026/PRES/joaquim-torres-lemos.pdf,2026BR280002500287_01.pdf,PRES_002.pdf,2026-09-10T13:07:48Z,bronze_v0,ok
+PRES_003,Marta Feijó Andrade,PNU,PRESIDENTE,BR,https://divulgacandcontas.tse.jus.br/planos/2026/PRES/marta-feijo-andrade.pdf,2026BR280002500019_01.pdf,PRES_003.pdf,2026-09-10T13:09:15Z,bronze_v0,erro_download

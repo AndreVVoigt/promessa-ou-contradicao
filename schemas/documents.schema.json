@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "documents",
+  "description": "Manifest da camada Bronze. Uma linha por documento. Produzido pelo DE-1.",
+  "dataset_path": "data/bronze/metadata/documents.csv",
+  "primary_key": ["document_id"],
+  "type": "object",
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "pattern": "^PRES_\\d{3}$",
+      "unique": true,
+      "description": "Identificador do documento. Estável entre execuções."
+    },
+    "candidate": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nome como consta no plano de governo, sem normalização."
+    },
+    "party": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Sigla em maiúsculas, sem pontuação."
+    },
+    "office": {
+      "type": "string",
+      "enum": ["PRESIDENTE", "GOVERNADOR"],
+      "description": "Cargo. Na v0, sempre PRESIDENTE."
+    },
+    "state": {
+      "type": "string",
+      "pattern": "^([A-Z]{2})$",
+      "description": "UF de duas letras maiúsculas ou BR. Na v0, sempre BR."
+    },
+    "source_url": {
+      "type": "string",
+      "pattern": "^https://",
+      "description": "URL de onde o PDF foi baixado."
+    },
+    "original_filename": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nome exato de origem, com extensão. Não normalizado."
+    },
+    "filename": {
+      "type": "string",
+      "minLength": 1,
+      "unique": true,
+      "description": "Nome normalizado na Bronze, carregando o document_id."
+    },
+    "download_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 com indicação de fuso. Não pode ser futuro."
+    },
+    "dataset_version": {
+      "type": "string",
+      "pattern": "^bronze_v\\d+$",
+      "description": "Versão do dataset. Constante dentro de um mesmo arquivo."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "erro_download", "arquivo_vazio", "url_invalida"],
+      "description": "Resultado da tentativa de download. Linhas com status != ok não têm arquivo em data/bronze/raw/."
+    }
+  },
+  "required": [
+    "document_id", "candidate", "party", "office", "state", "source_url",
+    "original_filename", "filename", "download_timestamp", "dataset_version", "status"
+  ],
+  "additionalProperties": false
+}

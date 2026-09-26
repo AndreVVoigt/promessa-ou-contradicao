@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "chunks",
+  "description": "Camada Silver. Uma linha por chunk de texto. Produzido pelo DE-2, validado pelo DE-3.",
+  "dataset_path": "data/silver/chunks.parquet",
+  "primary_key": ["chunk_id"],
+  "foreign_keys": [
+    {
+      "column": "document_id",
+      "references": "documents.document_id",
+      "note": "Repete: um documento tem muitos chunks."
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^PRES_\\d{3}_p\\d{3}_c\\d{3}$",
+      "unique": true,
+      "description": "Identificador do chunk. O trecho antes de _p é igual a document_id."
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^PRES_\\d{3}$",
+      "description": "Documento de origem. Precisa existir no manifest."
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Página do PDF. Igual, como número, ao PPP do chunk_id. Limite superior não validável na v0 (manifest não registra n_pages)."
+    },
+    "section": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "description": "Seção temática. Nulo aceito na v0. String vazia não é aceita — use nulo."
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Texto do chunk. Não vazio após remover espaços das pontas."
+    },
+    "n_chars": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Derivado de text. Igual ao comprimento de text."
+    },
+    "dataset_version": {
+      "type": "string",
+      "pattern": "^silver_v\\d+$",
+      "description": "Versão do dataset. Constante dentro de um mesmo arquivo."
+    }
+  },
+  "required": [
+    "chunk_id", "document_id", "page", "section", "text", "n_chars", "dataset_version"
+  ],
+  "additionalProperties": false
+}
