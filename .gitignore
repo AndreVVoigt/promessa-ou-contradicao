@@ -29,7 +29,7 @@ data/clean_silver/
 data/seed_v0/
 
 
-.vscode/*
+.vscode/
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea/
